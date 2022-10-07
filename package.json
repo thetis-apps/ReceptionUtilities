@@ -1,0 +1,23 @@
+{
+  "name": "capida",
+  "version": "1.0.0",
+  "description": "This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetis-apps/Capida.git"
+  },
+  "author": "Thetis Apps",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thetis-apps/Capida/issues"
+  },
+  "homepage": "https://github.com/thetis-apps/Capida#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1230.0",
+    "axios": "^1.1.2"
+  }
+}
