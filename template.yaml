@@ -1,21 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Utilities for inbound procedures
+  Utilities for reception of items
 
 # Metadata to use for the publishing to the SAR
 Metadata:
   AWS::ServerlessRepo::Application:
-    Name: thetis-ims-capida
-    Description: Utilities for inbound procedures
+    Name: thetis-ims-reception-utilities
+    Description: Utility functions triggered by the reception of an item
     Author: thetis-apps
     SpdxLicenseId: Apache-2.0
     LicenseUrl: LICENSE.txt
     ReadmeUrl: README.md
     Labels: ['thetis-ims']
-    HomePageUrl: https://github.com/thetis-apps/InboundUtilities
+    HomePageUrl: https://github.com/thetis-apps/ReceptionUtilities
     SemanticVersion: 1.0.0
-    SourceCodeUrl: https://github.com/thetis-apps/InboundUtilities  
+    SourceCodeUrl: https://github.com/thetis-apps/ReceptionUtilities  
   
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
