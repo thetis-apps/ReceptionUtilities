@@ -7,14 +7,14 @@ Description: >
 Metadata:
   AWS::ServerlessRepo::Application:
     Name: thetis-ims-reception-utilities
-    Description: Utility functions triggered by the reception of an item
+    Description: Utility functions triggered by the reception of items
     Author: thetis-apps
     SpdxLicenseId: Apache-2.0
     LicenseUrl: LICENSE.txt
     ReadmeUrl: README.md
     Labels: ['thetis-ims']
     HomePageUrl: https://github.com/thetis-apps/ReceptionUtilities
-    SemanticVersion: 1.0.0
+    SemanticVersion: 1.0.1
     SourceCodeUrl: https://github.com/thetis-apps/ReceptionUtilities  
   
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
@@ -44,11 +44,11 @@ Parameters:
 
 Resources:
 
-  AssignLocationFunction:
+  Handler:
     Type: AWS::Serverless::Function
     Properties:
       Description: Function that runs when physical stock changes as a result of a reception
-      Handler: src/capida.assignLocation
+      Handler: src/handler.handle
       Environment:
         Variables:
           ClientId:
