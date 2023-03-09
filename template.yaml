@@ -1,21 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Capida
+  Utilities for inbound procedures
 
 # Metadata to use for the publishing to the SAR
 Metadata:
   AWS::ServerlessRepo::Application:
     Name: thetis-ims-capida
-    Description: Customer specific add-on for Capida.
+    Description: Utilities for inbound procedures
     Author: thetis-apps
     SpdxLicenseId: Apache-2.0
     LicenseUrl: LICENSE.txt
     ReadmeUrl: README.md
     Labels: ['thetis-ims']
-    HomePageUrl: https://github.com/thetis-apps/Capida
-    SemanticVersion: 0.0.0
-    SourceCodeUrl: https://github.com/thetis-apps/Capida  
+    HomePageUrl: https://github.com/thetis-apps/InboundUtilities
+    SemanticVersion: 1.0.0
+    SourceCodeUrl: https://github.com/thetis-apps/InboundUtilities  
   
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -47,7 +47,7 @@ Resources:
   AssignLocationFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Description: Function that runs when a shipping label is requested by Thetis IMS
+      Description: Function that runs when physical stock changes as a result of a reception
       Handler: src/capida.assignLocation
       Environment:
         Variables:
