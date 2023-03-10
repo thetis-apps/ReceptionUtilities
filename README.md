@@ -1,23 +1,24 @@
 # Introduction
-This application offers functions that may run automatically every time a order proposal is created.
+This application offers functions that may run automatically every time one or more specimens of an item is received.
 
 # Installation
-You install the application from the connection view in Thetis IMS. The name of the application is 'thetis-ims-order-proposal-utilities'.
+You install the application from the connection view in Thetis IMS. The name of the application is 'thetis-ims-order-reception-utilities'.
 
 # Configuration
 In the data document of the context:
 ```
 {
-  "OrderProposalUtilities": {
-    "createInboundShipment": true
+  "ReceptionUtilities": {
+    "assignLocationToItem": true
   }
 }
 ```
 
 # Options
 
-#### createInboundShipment
+#### assignLocationToItem
 
-If this field is true, the application will automatically create one or more inbound shipments every time a new order proposal is created.
+Consider the location at which the specimens have been received. Assume that the item in question does not already have a location. In that case the location is assigned to the item.
 
-The application makes one inbound shipment for each future supplier represented in the order proposal. The latest supplier of an item is considered the future supplier. If an item has never before been purchased, it is not included in any inbound shipment.
+
+
