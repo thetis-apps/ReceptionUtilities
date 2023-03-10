@@ -6,13 +6,13 @@ You install the application from the connection view in Thetis IMS. The name of 
 
 # Configuration
 In the data document of the context:
-´´´
+```
 {
   "OrderProposalUtilities": {
     "createInboundShipment": true
   }
 }
-´´´
+```
 
 # Options
 
