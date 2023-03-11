@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/thetis-apps/Capida#readme",
   "dependencies": {
-    "aws-sdk": "^2.1230.0",
     "axios": "^1.1.2"
   }
 }

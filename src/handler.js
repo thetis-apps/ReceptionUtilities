@@ -16,9 +16,6 @@
 
 const axios = require('axios');
 
-var AWS = require('aws-sdk');
-AWS.config.update({region:'eu-west-1'});
-
 var cachedIMS = null;
 
 async function getIMS() {
