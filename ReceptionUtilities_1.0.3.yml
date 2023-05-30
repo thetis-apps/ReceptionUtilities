@@ -6,15 +6,15 @@ Description: 'Utilities for reception of items
 Metadata:
   AWS::ServerlessRepo::Application:
     Name: thetis-ims-reception-utilities
-    Description: Utility functions triggered by the reception of an item
+    Description: Utility functions triggered by the reception of items
     Author: thetis-apps
     SpdxLicenseId: Apache-2.0
     LicenseUrl: s3://aws-sam-cli-managed-default-samclisourcebucket-1q52gionhjeg3/4612b8d5aa75b9b9936c9b7b9e6c7e82
-    ReadmeUrl: s3://aws-sam-cli-managed-default-samclisourcebucket-1q52gionhjeg3/a27915dcbcdbeba5ab1e46bd1f18b5cd
+    ReadmeUrl: s3://aws-sam-cli-managed-default-samclisourcebucket-1q52gionhjeg3/6f4dd246a5098bea50a56c500debebf7
     Labels:
     - thetis-ims
     HomePageUrl: https://github.com/thetis-apps/ReceptionUtilities
-    SemanticVersion: 1.0.0
+    SemanticVersion: 1.0.3
     SourceCodeUrl: https://github.com/thetis-apps/ReceptionUtilities
 Globals:
   Function:
@@ -39,12 +39,12 @@ Parameters:
     Type: String
     MinLength: 4
 Resources:
-  AssignLocationFunction:
+  Handler:
     Type: AWS::Serverless::Function
     Properties:
       Description: Function that runs when physical stock changes as a result of a
         reception
-      Handler: src/capida.assignLocation
+      Handler: src/handler.handle
       Environment:
         Variables:
           ClientId:
@@ -75,46 +75,12 @@ Resources:
           Fn::GetAtt:
           - DeadLetterQueue
           - Arn
-      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-1q52gionhjeg3/02d622e41e4ebab79f01685a6b8eae78
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-1q52gionhjeg3/b6f692be9b9072cac36821518298ee11
     Metadata:
-      SamResourceId: AssignLocationFunction
+      SamResourceId: Handler
   DeadLetterQueue:
     Type: AWS::SQS::Queue
     Properties:
       KmsMasterKeyId: alias/aws/sqs
     Metadata:
       SamResourceId: DeadLetterQueue
-  Alarm:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmDescription: Alarm when any message is moved to the dead letter queue.
-      AlarmActions:
-      - Ref: IncidentTopic
-      ComparisonOperator: GreaterThanThreshold
-      EvaluationPeriods: 1
-      MetricName: ApproximateNumberOfMessagesVisible
-      Period: 60
-      Namespace: AWS/SQS
-      Threshold: '0'
-      Unit: Count
-      Dimensions:
-      - Name: QueueName
-        Value:
-          Fn::GetAtt:
-          - DeadLetterQueue
-          - QueueName
-      TreatMissingData: notBreaching
-      Statistic: Maximum
-    Metadata:
-      SamResourceId: Alarm
-  IncidentTopic:
-    Type: AWS::SNS::Topic
-    Properties:
-      KmsMasterKeyId: alias/aws/sns
-      Subscription:
-      - Endpoint:
-          Ref: DevOpsEmail
-        Protocol: email
-      DisplayName: Incidents to be handled by Thetis Devops.
-    Metadata:
-      SamResourceId: IncidentTopic
